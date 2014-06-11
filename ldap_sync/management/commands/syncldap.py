@@ -90,7 +90,7 @@ class Command(NoArgsCommand):
             # Create or update user data in the local database
             try:
                 user, created = model.objects.get_or_create(**kwargs)
-            except (IntegrityError, DataError) as e:
+            except (IntegrityError, DataError, OperationalError) as e:
                 logger.error("Error creating user %s: %s" % (username, e))
             else:
                 updated_fields = []
