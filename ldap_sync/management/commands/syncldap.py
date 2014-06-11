@@ -209,6 +209,9 @@ class Command(NoArgsCommand):
             raise ImproperlyConfigured(error_msg)
 
         ldap.set_option(ldap.OPT_REFERRALS, 0)
+        ignore_cert = getattr(settings, 'LDAP_SYNC_IGNORE_CERT', False)
+        if ignore_cert:
+            ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
         l = PagedLDAPObject(uri)
         l.protocol_version = 3
         try:
