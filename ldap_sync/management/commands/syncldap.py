@@ -9,7 +9,7 @@ from django.core.management.base import NoArgsCommand
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.core.exceptions import ImproperlyConfigured
-from django.db import IntegrityError, DataError
+from django.db import IntegrityError, DataError, OperationalError
 
 
 logger = logging.getLogger(__name__)
